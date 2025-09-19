@@ -1,0 +1,90 @@
+.header{
+  background-color:rgb(60, 60, 232);
+  padding-left:15px;
+  color:white;
+  font-size:5px;
+}
+.input-form{
+  display:flex;
+  box-shadow:0px 0px 10px #476EF7;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  width:95%;
+  margin: auto;
+  margin-top:15px;
+  padding-top: 10px;
+  padding-bottom:10px;
+
+}
+.plus{
+  background-color: #476EF7;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  border:none;
+  color:white;
+}
+.main-card{
+  width:95%;
+  margin:auto;
+  margin-top:15px;
+  display:flex;
+  justify-content: space-between;
+
+}
+.card{
+  background-color: #476EF7;
+  color:white;
+  padding-bottom:20px;
+}
+table{
+  width:95%;
+  margin:auto;
+  margin-top:10px;
+}
+table tr th{
+  background-color: #476EF7;
+  border-radius:4px;
+  padding:5px 10px;
+  color:white;
+}
+.delete-button{
+  background-color: red;
+  border-radius: 50%;
+  height:50px;
+  width:50px;
+  border:none;
+  
+}
+.Table{
+  display:flex;
+  align-items:center;
+  box-shadow:0px 0px 10px #476EF7;
+  width:95%;
+  margin-top:30px;
+  margin-left:40px;
+  border-radius:8px;
+}
+@media only  screen and (max-width: 768px){
+ .header{
+  background-color:black; 
+ }
+.input-form{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  width:65%;
+}
+.main-card{
+  width:fit-content;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.card{
+  background-color:black;
+}
+ table tr th{
+  background-color:black;
+}

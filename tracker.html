@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="./tracker.css">
+  </head>
+  <body>
+    <div class="header">
+      <h5 class="m-0">Expense<br>Tracker
+      </h5>
+    </div>
+
+    <div class="input-form">
+           <div class="form-floating">
+              <input type="date" class="form-control dateInput" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Date</label>
+           </div>
+           <div class="form-floating">
+              <input type="text" class="form-control amountInput" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Amount</label>
+           </div>
+           <div class="selection ">
+                <select class="form-select transactionType" aria-label="Default select example">
+                  <option selected>Transaction Type</option>
+                  <option value="Income">Income</option>
+                  <option value="Expansive">Expansive</option>
+                </select>
+            </div>
+            <button class="plus" onclick="addnew()"><b>+</b></button>
+    </div>
+    <div class="main-card">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Total Income</h5>
+                <h2 class="card-subtitle"><span id="totalIncome">₹ 0</span></h2>
+              </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Total Expansive</h5>
+                <h2 class="card-subtitle  "><span id="totalExpansive">₹0</span></h2>
+              </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Balence</h5>
+                <h2 class="card-subtitle  "><span id="balence">₹ 0</span></h2>
+              </div>
+          </div>
+   </div>
+   <div class="Table">
+     <table class="Inside-table" id="table">
+       <tr>
+         <th>Amount</th>
+         <th>Transcation Type</th>
+         <th>Transcation Date</th>
+         <th>Action</th>
+       </tr>
+   
+       
+     </table>
+   </div>
+   <script>
+    let table = document.getElementById('table')
+
+    function deleteRow(row){
+      row.remove();
+    }
+    function addnew() {
+  let date = document.getElementsByClassName('dateInput')[0].value;
+  let amount = parseInt(document.getElementsByClassName('amountInput')[0].value);
+  let transactiontype = document.getElementsByClassName('transactionType')[0].value;
+
+  if (!date || isNaN(amount) || transactiontype === "Transaction Type") {
+    alert("Please fill all fields correctly!");
+    return;
+  }
+
+  // create table row
+  let row = document.createElement('tr');
+
+  let amountcell = document.createElement('td');
+  amountcell.innerText = amount;
+
+  let transactioncell = document.createElement('td');
+  transactioncell.innerText = transactiontype;
+
+  let datecell = document.createElement('td');
+  datecell.innerText = date;
+
+  let bincell = document.createElement('td');
+  let deleteButton = document.createElement('button');
+  let binImage = document.createElement('img');
+  binImage.src = './delete_logo.png';
+  binImage.style.width = "25px";
+  binImage.style.height = "25px";
+  deleteButton.appendChild(binImage);
+  deleteButton.classList.add('delete-button');
+  deleteButton.onclick = () => deleteRow(row);
+
+  bincell.appendChild(deleteButton);
+
+  row.appendChild(amountcell);
+  row.appendChild(transactioncell);
+  row.appendChild(datecell);
+  row.appendChild(bincell);
+
+  table.appendChild(row);
+
+  // get current totals (removing ₹)
+  let totalIncome = parseInt(document.getElementById('totalIncome').innerText.replace("₹", "").trim()) || 0;
+  let totalExpense = parseInt(document.getElementById('totalExpansive').innerText.replace("₹", "").trim()) || 0;
+  let balance = parseInt(document.getElementById('balence').innerText.replace("₹", "").trim()) || 0;
+
+  if (transactiontype === 'Income') {
+    totalIncome += amount;
+    balance += amount;
+  } else if (transactiontype === 'Expansive') {
+    totalExpense += amount;
+    balance -= amount;
+  }
+
+  // update UI
+  document.getElementById('totalIncome').innerText = "₹ " + totalIncome;
+  document.getElementById('totalExpansive').innerText = "₹ " + totalExpense;
+  document.getElementById('balence').innerText = "₹ " + balance;
+}
+
+   </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
