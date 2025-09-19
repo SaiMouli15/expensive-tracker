@@ -26,7 +26,7 @@ Interactive and user-friendly interface
 
 Download or clone the repository.
 
-Open the index.html file in any modern web browser.
+Open the HOME.html file in any modern web browser.
 
 Start tracking your expenses!
 
